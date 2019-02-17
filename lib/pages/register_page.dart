@@ -91,7 +91,7 @@ class RegisterPageState extends State<RegisterPage> {
   }
 
   void _onSubmit(BuildContext context, String value) {
-    Network.getSmsConfirmation(_phoneNumber, _name, _password, _responseResult);
+    Network.getRegisterSmsConfirmation(_phoneNumber, _name, _password, _responseResult);
     PageNavigator.pushPage(context, Home());
   }
 }

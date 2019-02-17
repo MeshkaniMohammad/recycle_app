@@ -24,7 +24,7 @@ class Network {
     return jsonDecode(response.body);
   }
 
-  static getSmsConfirmation(
+  static getRegisterSmsConfirmation(
       String _phoneNumber,
       String _name,
       String _password,
@@ -123,10 +123,7 @@ class Network {
       var res = json.decode(response.body);
       if (res["result"]["message"].toString().contains("2201")) {
         http.post(LOGIN_URL,
-            body: json.encode({
-              "login": "09384556978",
-              "password": "ttdkbhg"
-            }),
+            body: json.encode(loginFields),
             headers: {"Content-Type": "application/json"})
             .then((http.Response loginResponse){
           var loginRes = json.decode(loginResponse.body);
