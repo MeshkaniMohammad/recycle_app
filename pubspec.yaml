@@ -7,17 +7,27 @@ description: A new Flutter project.
 # Both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
 # Read more about versioning at semver.org.
-version: 1.0.0+1
+version: 1.0.2+3
+
 
 environment:
-  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+  sdk: ">=2.0.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.12.0+1
+  http: ^0.11.3+13
   shared_preferences: ^0.5.1+1
-  circular_bottom_navigation: ^0.0.5
+  flutter_svg: ^0.10.3
+  persian_datepicker: ^1.2.1
+  flutter_datetime_picker: ^1.1.2
+  #url_launcher: ^5.0.1
+  #flutter_generic_oauth: "^1.0.0"
+
+
+
+
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -26,7 +36,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.7.0
+  logging: ^0.11.3+2
 
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
@@ -42,6 +59,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/earth.jpg
+    - assets/green_earth.jpg
+    - assets/recycle_bin.png
+    - assets/garbege_truck.svg
+    - assets/icon.png
+    - assets/telegram.svg
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

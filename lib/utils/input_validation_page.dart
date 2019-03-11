@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application/utils/validator.dart';
 
-
 class InputValidationPage extends StatefulWidget {
   InputValidationPage({
     @required this.title,
@@ -16,6 +15,7 @@ class InputValidationPage extends StatefulWidget {
     this.onSubmit,
     this.flag,
   });
+
   InputValidationPage.phoneNumberChecker({
     @required this.title,
     this.inputDecoration = const InputDecoration(),
@@ -28,6 +28,7 @@ class InputValidationPage extends StatefulWidget {
     this.onSubmit,
     this.flag,
   });
+
   final String title;
   final InputDecoration inputDecoration;
   final TextStyle textFieldStyle;
@@ -39,12 +40,22 @@ class InputValidationPage extends StatefulWidget {
   final ValueChanged<String> onSubmit;
   final bool flag; //true == LoginPage and false == RegisterPage
   @override
-  _InputValidationPageState createState() => _InputValidationPageState();
+  InputValidationPageState createState() => InputValidationPageState();
 }
 
-class _InputValidationPageState extends State<InputValidationPage> {
+class InputValidationPageState extends State<InputValidationPage>
+    with SingleTickerProviderStateMixin {
+  static final scaffoldKey = GlobalKey<ScaffoldState>();
   FocusNode _focusNode = FocusNode();
   String _value = '';
+
+
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
 
   void _submit() async {
     bool valid = widget.submitValidator.isValid(_value);
@@ -54,12 +65,16 @@ class _InputValidationPageState extends State<InputValidationPage> {
     } else {
       FocusScope.of(context).requestFocus(_focusNode);
     }
+
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
+        backgroundColor: Colors.green,
         title: Text(widget.title, style: TextStyle(fontSize: 24.0)),
       ),
       body: _buildContent(context),
@@ -89,10 +104,15 @@ class _InputValidationPageState extends State<InputValidationPage> {
   Widget _buildContent(BuildContext context) {
     return Column(
       children: <Widget>[
+        SizedBox(
+          height: 10,
+        ),
+
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 80.0),
+          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 25.0),
           child: Center(child: _buildTextField()),
         ),
+        Text("تا یک دقیقه منتظر کد تایید پیامکی بمانید"),
         Expanded(child: Container()),
         _buildDoneButton(context),
       ],
@@ -105,7 +125,7 @@ class _InputValidationPageState extends State<InputValidationPage> {
       opacity: valid ? 1.0 : 0.0,
       child: Container(
         constraints:
-        BoxConstraints.expand(width: double.infinity, height: 60.0),
+            BoxConstraints.expand(width: double.infinity, height: 60.0),
         child: FlatButton(
           color: Colors.green[500],
           child: Text(widget.submitText, style: TextStyle(fontSize: 20.0)),
